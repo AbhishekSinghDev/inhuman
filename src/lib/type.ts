@@ -49,7 +49,7 @@ interface EventAttributes {
 }
 
 interface Event {
-  data: User;
+  data: ClerkResponse;
   event_attributes: EventAttributes;
   object: string;
   timestamp: number;
