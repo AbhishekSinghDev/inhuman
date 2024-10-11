@@ -37,6 +37,7 @@ export const GET = async (req: NextRequest) => {
   console.log("Account Details: ", accountDetails);
 
   // upsert = if i have a user with this accountId then update and if not then create
+
   await db.account.upsert({
     where: {
       id: res.accountId.toString(),

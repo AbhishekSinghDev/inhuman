@@ -64,6 +64,8 @@ export const accountRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const { accountId, tab, done } = input;
 
+      console.log("fetching user emails");
+
       const account = await authorizeAccountAccess(accountId, ctx.auth.userId);
 
       let filter: Prisma.ThreadWhereInput = {};
@@ -79,7 +81,11 @@ export const accountRouter = createTRPCRouter({
         equals: done,
       };
 
-      return await ctx.db.thread.findMany({
+      filter.accountId = {
+        equals: accountId,
+      };
+
+      const values = await ctx.db.thread.findMany({
         where: filter,
         include: {
           emails: {
@@ -103,5 +109,9 @@ export const accountRouter = createTRPCRouter({
           lastMessageDate: "desc",
         },
       });
+
+      console.log("user emails: ", values);
+
+      return values;
     }),
 });

@@ -1,15 +1,14 @@
-import { api } from "@/trpc/react";
-import React from "react";
 import { useLocalStorage } from "usehooks-ts";
 
 import { atom, useAtom } from "jotai";
+import { api } from "@/trpc/react";
 
 export const threadIdAtom = atom<string | null>(null);
 
 const useThread = () => {
   const { data: accounts } = api.account.getAccounts.useQuery();
   const [accountId] = useLocalStorage("accountId", "");
-  const [tab] = useLocalStorage("inhuman-tab", "");
+  const [tab] = useLocalStorage("inhuman-tab", "inbox");
   const [done] = useLocalStorage("inhuman-don", false);
   const [threadId, setThreadId] = useAtom(threadIdAtom);
 
