@@ -13,6 +13,7 @@ import React from "react";
 import AccountSwitcher from "./account-switcher";
 import SideBar from "./side-bar";
 import ThreadList from "./thread-list";
+import ThreadDisplay from "./thread-display";
 
 type MailProps = {
   defaultLayout: number[] | undefined;
@@ -99,7 +100,7 @@ const Mail = ({
         <ResizableHandle withHandle />
 
         <ResizablePanel defaultSize={defaultLayout[2]} minSize={30}>
-          thread display
+          <ThreadDisplay />
         </ResizablePanel>
       </ResizablePanelGroup>
     </TooltipProvider>
